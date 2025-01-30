@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZephroTech | Contact</title>
+    <!-- Add Font Awesome for Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"/>
+  
+</head>
+<body>
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Address</h3>
+                <p>Pampanga, Philippines</p>
+                <p>Richville, Subd.</p>
+              
+                <h3>Phone</h3>
+                <p>09617545113</p>
+              
+                <h3>Email</h3>
+                <p>eypamintuan.work&#64;gmail.com</p>
+                <p>eljan.y.pamintuan&#64;icloud.com</p>
+
+                <!-- Social Links -->
+                <div class="social-links">
+                  <h3>Connect with me</h3>
+                  <a
+                    href="https://github.com/eljan123"
+                    target="_blank"
+                    class="github"
+                    aria-label="GitHub"
+                  >
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/eljan-pamintuan-6149641a0/"
+                    target="_blank"
+                    aria-label="LinkedIn"
+                  >
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </div>
+            </div>
+          
+            <div class="contact-form">
+              <h2>Send a message</h2>
+              <p>
+                If you want to hire me or any types of queries related to my
+                portfolio, you can send me a message from here. It’s my pleasure to help
+                you.
+              </p>
+              <form (ngSubmit)="onSubmit()" #contactForm="ngForm" id="contactForm">
+                <input type="text" placeholder="Enter your name" [(ngModel)]="formData.name" name="from_name" required />
+                <input type="email" placeholder="Enter your email" [(ngModel)]="formData.email" name="from_email" required />
+                <textarea placeholder="Enter your message" rows="4" [(ngModel)]="formData.message" name="message" required></textarea>
+                <button type="submit" [disabled]="contactForm.invalid">Send Now</button>
+              </form>
+            </div>
+          </div>
+    </section>      
+</body>
+</html>

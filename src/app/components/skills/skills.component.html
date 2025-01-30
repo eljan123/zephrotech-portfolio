@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZephroTech | Skills</title>
+</head>
+<body>
+    <section class="skills">
+        <div class="skills-title">
+            <h2>What I Do</h2>
+            <p>
+             {{ whatIDo }}
+            </p>
+        </div>
+        <div class="skills-box">
+            <div class="skills-container">
+                <!-- Use ngFor to loop through the skills array -->
+                <div *ngFor="let skill of skills" class="skill-card">
+                    <img [src]="skill.image"  />
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>

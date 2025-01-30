@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZephroTech | About</title>
+</head>
+<body>
+  <section class="profile-section">
+    <!-- Image Container -->
+    <div class="profile-image" *ngIf="profile.image">
+      <img [src]="profile.image" [alt]="profile.name + ' Picture'">
+    </div>
+  
+    <!-- Content Container -->
+    <div class="profile-content">
+      <h1>I'm <span>{{ profile.name }}</span>, a <span>{{ profile.title }}</span></h1>
+      <p>{{ profile.description }}</p>
+      <p *ngFor="let detail of profile.details">{{ detail }}</p>
+    </div>
+  </section>
+  
+  <section class="education">
+    <h1 class="education-title">Education</h1>
+      <div class="timeline-container">
+          <div class="timeline-line"></div>
+          <div class="timeline-events">
+            <div *ngFor="let edu of education; let i = index" class="timeline-event" [ngClass]="{'active': activeIndex === i}">
+              <div class="event-dot"></div>
+              <div class="event-content">
+                <h3>{{ edu.title }}</h3>
+                <p>{{ edu.description }}</p>
+              </div>
+            </div>
+          </div>
+      </div>
+  </section>
+      
+</body>
+</html>

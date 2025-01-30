@@ -1,0 +1,392 @@
+/* ABOUT ME STYLE -------------------------------------------------------------- */
+
+$primary-color: #333; /* Main text color */
+$secondary-color: #666; /* Secondary text color */
+$background-color: #f4f4f4df; /* Background for the content box */
+$image-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Shadow for the image */
+$content-padding: 20px;
+$accent-color: rgb(255, 94, 58);
+$dark-blue: rgb(8, 21, 55);
+
+.profile-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px;
+  max-width: 1200px;
+  margin: 10% auto;
+
+  /* Image Container */
+  .profile-image {
+    flex: 1 1 40%;
+    max-width: 250px;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: $image-shadow;
+    }
+  }
+
+  /* Content Container */
+  .profile-content {
+    flex: 1 1 50%;
+    background-color: $dark-blue;
+    padding: $content-padding;
+    border-radius: 8px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.5);
+    border-left: 5px solid $accent-color;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.3), -8px -8px 15px rgba(255, 255, 255, 0.5);
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    span {
+      color: #0ef;
+    }
+  }
+}
+
+/* Mobile and Tablet adjustments ------------------------------------------------ */
+
+@media (max-width: 768px) {
+  .profile-section {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    padding: 30px;
+  }
+
+  .profile-image {
+    flex: 1 1 80%; /* Make image larger on mobile */
+    max-width: 90%; /* Max width for the image */
+    margin-bottom: 20px; /* Add margin for separation */
+  }
+
+  .profile-content {
+    flex: 1 1 80%; /* Make content take more space */
+    padding: 15px; /* Reduced padding */
+    border-left: none; /* Remove left border */
+    margin-top: 20px; /* Add margin between image and content */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.3);
+  }
+
+  h1 {
+    font-size: 24px; /* Adjust font size for better readability on mobile */
+  }
+
+  p {
+    font-size: 14px; /* Adjust text size */
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-section {
+    padding: 20px; /* Adjust padding for smaller mobile devices */
+  }
+
+  .profile-image {
+    flex: 1 1 100%; /* Image takes full width on very small screens */
+    max-width: 100%;
+  }
+
+  .profile-content {
+    flex: 1 1 100%; /* Content takes full width */
+    margin-top: 10px;
+  }
+
+  h1 {
+    font-size: 20px; /* Further reduce the font size on very small screens */
+  }
+
+  p {
+    font-size: 12px; /* Further reduce text size */
+  }
+}
+
+
+/* ----------------------------------------------------------------------------- */
+/* EDUCATION TIMELINE STYLE ---------------------------------------------------- */
+.education {
+  margin-top: 20%;
+  overflow: visible; /* Remove any extra scrolling */
+}
+
+.education-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+$dot-size: 20px;
+$active-color: #007bff;
+$inactive-color: #ccc;
+$line-width: 4px;
+$transition-duration: 0.3s;
+$event-gap: 100px; /* Set the gap between the events for scrolling */
+$event-content-width: 250px; /* Width for the event content */
+
+.timeline-container {
+  position: relative;
+  margin: 50px auto;
+  width: 80%;
+  max-width: 800px;
+  height: auto; /* Remove fixed height to avoid additional scroll */
+  overflow-y: visible; /* Allow natural scroll */
+}
+
+.timeline-line {
+  position: absolute;
+  right: 0; /* Move the line to the right */
+  height: 100%;
+  width: $line-width;
+  background: $inactive-color;
+  transition: background $transition-duration;
+}
+
+.timeline-events {
+  display: flex;
+  flex-direction: column;
+  gap: $event-gap; /* Increased gap between events */
+  padding-left: 20px; /* Padding between text and timeline line */
+  padding-bottom: 20px; /* Space at the bottom of the events */
+}
+
+.timeline-event {
+  position: relative;
+  display: flex;
+  justify-content: flex-start; /* Align events to the left */
+  gap: 20px;
+  transition: transform $transition-duration;
+
+  &.active {
+    .event-dot {
+      background: $active-color;
+    }
+
+    .event-content h3,
+    .event-content p {
+      color: $active-color;
+    }
+  }
+}
+
+.event-dot {
+  position: relative;
+  width: $dot-size;
+  height: $dot-size;
+  background: $inactive-color;
+  border-radius: 50%;
+  transition: background $transition-duration;
+}
+
+.event-content {
+  width: $event-content-width; /* Adjust the width of the content */
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color $transition-duration;
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+
+  p {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    color: #666;
+  }
+}
+
+/* Mobile View (max-width: 768px) ------------------------------------------------ */
+@media (max-width: 768px) {
+  .timeline-container {
+    width: 90%; /* Make it slightly smaller */
+    margin: 20px auto;
+    left: 5%; /* Center timeline by adjusting left */
+  }
+
+  .timeline-line {
+    right: 50%; /* Move line to the center */
+    transform: translateX(50%); /* Align properly */
+    width: 2px; /* Thinner line for smaller screens */
+  }
+
+  .timeline-event {
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+    text-align: center;
+
+    .event-dot {
+      margin-bottom: 10px; /* Add spacing between dot and content */
+    }
+
+    .event-content {
+      width: 90%; /* Make content width smaller */
+      padding: 10px; /* Less padding for smaller screens */
+    }
+  }
+}
+
+/* Tablet View (max-width: 1024px) --------------------------------------------- */
+@media (max-width: 1024px) {
+  .timeline-container {
+    width: 85%; /* Slightly smaller width for tablets */
+    left: 7.5%; /* Center timeline with a bit of space on both sides */
+  }
+
+  .timeline-line {
+    right: 10%; /* Adjust line to better fit */
+  }
+
+  .timeline-event {
+    .event-content {
+      width: 75%; /* Reduce content width for tablets */
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+.hamburger {
+    display: none; 
+}
+
+@mixin responsive($breakpoint) {
+    @media screen and (max-width: $breakpoint) {
+        @content;
+    }
+}
+
+@include responsive(768px) {
+    header {
+        padding: 15px 5%;
+        flex-direction: row; 
+        justify-content: space-between;
+        align-items: center;
+
+        .navbar {
+            display: none; 
+            flex-direction: column; 
+            align-items: flex-start;
+            position: absolute;
+            top: 100%; 
+            left: 0;
+            width: 100%;
+            background: #1f242d;
+            padding: 15px 5%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            gap: 10px; 
+            z-index: 10; 
+
+            &.show {
+                display: flex; 
+            }
+
+            a {
+                margin-left: 0; 
+                width: 100%; 
+                text-align: left;
+                padding: 10px 0; 
+                font-size: 16px; 
+                color: #fff; 
+                text-decoration: none; 
+                transition: background 0.3s; 
+
+                &:hover {
+                    background: #333; 
+                }
+            }
+        }
+
+        .hamburger {
+            display: block;
+            font-size: 25px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 20; 
+        }
+    }
+}
+
+@include responsive(480px) {
+    header {
+        padding: 10px 5%;
+        align-items: center; 
+
+    
+
+        .navbar {
+            gap: 8px; 
+            display: none; 
+            animation: slideInNavbar 0.2s ease-in-out;
+
+            &.show {
+                display: flex; 
+            }
+
+            a {
+                font-size: 14px; 
+                padding: 10px 0; 
+            }
+        }
+    }
+
+   
+
+   
+}
+
+@include responsive(769px) {
+    .hamburger {
+        display: none; 
+    }
+
+    .navbar {
+        display: flex; 
+        gap: 20px; 
+        justify-content: center; 
+
+        a {
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none; 
+            padding: 10px 20px; 
+            transition: background 0.3s; 
+
+            &:hover {
+                background: #333; 
+            }
+        }
+    }
+}
