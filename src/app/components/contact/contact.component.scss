@@ -4,7 +4,10 @@ $secondary-text-color: #ffffffac;
 $hover-color: #0077b5;
 
 .contact-section {
-  margin: 15% auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
   padding: 2rem;
 
   .contact-container {
@@ -12,6 +15,8 @@ $hover-color: #0077b5;
     gap: 2rem;
     padding: 2rem;
     font-family: Arial, sans-serif;
+    max-width: 1200px;
+    width: 100%;
 
     .contact-info {
       width: 40%;
@@ -100,6 +105,8 @@ $hover-color: #0077b5;
       color: $hover-color;
     }
   }
+
+  
 
   // Responsive styles
   @media (max-width: 1024px) {
