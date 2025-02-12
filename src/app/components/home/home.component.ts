@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']  // Corrected to styleUrls
+  styleUrls: ['./home.component.scss']  
 })
 
 export class HomeComponent implements AfterViewInit {
@@ -59,7 +59,7 @@ export class HomeComponent implements AfterViewInit {
     const hamburger = document.querySelector('.hamburger') as HTMLElement;
     const navbar = document.querySelector('.navbar') as HTMLElement;
 
-    if (!hamburger || !navbar) return; // Ensure elements exist before proceeding
+    if (!hamburger || !navbar) return; // This will ensure elements exist before proceeding
 
     // Remove any existing event listeners to prevent duplication
     hamburger.replaceWith(hamburger.cloneNode(true));

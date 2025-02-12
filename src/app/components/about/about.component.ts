@@ -14,8 +14,8 @@ export class AboutComponent {
   setupHamburgerMenu(): void {
     const hamburger = document.querySelector('.hamburger') as HTMLElement;
     const navbar = document.querySelector('.navbar') as HTMLElement;
-
-    if (!hamburger || !navbar) return; // Ensure elements exist before proceeding
+    // This will ensure elements exist before proceeding
+    if (!hamburger || !navbar) return; 
 
     // Remove any existing event listeners to prevent duplication
     hamburger.replaceWith(hamburger.cloneNode(true));
@@ -69,14 +69,14 @@ export class AboutComponent {
   // Method to return the line color based on the active index
   getLineColor(index: number): string {
     const colorList = [
-      '#007bff', // Color for the first event
-      '#28a745', // Color for the second event
-      '#ffc107', // Color for the third event
-      '#dc3545'  // Color for the fourth event
+      '#007bff', 
+      '#28a745', 
+      '#ffc107', 
+      '#dc3545'  
     ];
 
     // Return the appropriate color for the active event, or a default inactive color
-    return colorList[index] || '#ccc';  // Default fallback inactive color
+    return colorList[index] || '#ccc';  
   }
 
 

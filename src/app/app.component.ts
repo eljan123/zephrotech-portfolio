@@ -16,8 +16,8 @@ export class AppComponent {
   setupHamburgerMenu(): void {
     const hamburger = document.querySelector('.hamburger') as HTMLElement;
     const navbar = document.querySelector('.navbar') as HTMLElement;
-
-    if (!hamburger || !navbar) return; // Ensure elements exist before proceeding
+    // This will ensure elements exist before proceeding
+    if (!hamburger || !navbar) return; 
 
     // Remove any existing event listeners to prevent duplication
     hamburger.replaceWith(hamburger.cloneNode(true));
