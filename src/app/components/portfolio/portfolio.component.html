@@ -6,6 +6,111 @@
     <title>ZephroTech | Portfolio</title>
 </head>
 <body>
-    <h3><br><br><br><br>Projects page will continue soon!</h3>
+    <section class="page-header">
+        <div class="header-content">
+            <h1>My <span>Projects</span></h1>
+            <p>A showcase of my best work and ongoing development projects.</p>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+     
+    <section class="featured-projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div *ngFor="let project of featuredProjects" class="project-card" (click)="openProjectModal(project)">
+                <div class="project-image">
+                    <img [src]="project.image" [alt]="project.title">
+                </div>
+                <div class="project-content">
+                    <h3>{{ project.title }}</h3>
+                    <p class="project-category">{{ project.category }}</p>
+                    <p class="project-summary">{{ project.summary }}</p>
+                    <div class="tech-stack">
+                        <span *ngFor="let tech of project.technologies" class="tech-tag">{{ tech }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Projects Section -->
+    <section class="other-projects">
+        <h2 class="section-title">Other Projects</h2>
+        <p class="coming-soon">Coming Soon...</p>
+        <!--
+        <div class="projects-grid">
+            <div *ngFor="let project of otherProjects" class="project-card" (click)="openProjectModal(project)">
+                <div class="project-image">
+                    <img [src]="project.image" [alt]="project.title">
+                </div>
+                <div class="project-content">
+                    <h3>{{ project.title }}</h3>
+                    <p class="project-category">{{ project.category }}</p>
+                    <p class="project-summary">{{ project.summary }}</p>
+                    <div class="tech-stack">
+                        <span *ngFor="let tech of project.technologies" class="tech-tag">{{ tech }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </section>
+
+    <!-- Project Modal -->
+    <div class="project-modal" *ngIf="showModal" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <span class="close-button" (click)="closeModal()">&times;</span>
+            <div *ngIf="selectedProject">
+                <h2>{{ selectedProject.title }}</h2>
+                
+                <div class="modal-image-gallery">
+                    <div class="gallery-container">
+                        <button class="gallery-nav prev" (click)="prevImage()" *ngIf="selectedProject.images.length > 1">
+                            <span>&#10094;</span>
+                        </button>
+                        
+                        <div class="modal-image-container">
+                            <img [src]="selectedProject.images[currentImageIndex]" [alt]="selectedProject.title">
+                            <div class="image-indicator" *ngIf="selectedProject.images.length > 1">
+                                <span *ngFor="let img of selectedProject.images; let i = index" 
+                                      [class.active]="i === currentImageIndex"
+                                      (click)="currentImageIndex = i"></span>
+                            </div>
+                        </div>
+                        
+                        <button class="gallery-nav next" (click)="nextImage()" *ngIf="selectedProject.images.length > 1">
+                            <span>&#10095;</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="project-details">
+                    <div class="project-info">
+                        <p><strong>Category:</strong> {{ selectedProject.category }}</p>
+                        <p><strong>Date:</strong> {{ selectedProject.date }}</p>
+                        <div class="tech-stack">
+                            <strong>Tech-stack:</strong>
+                            <span *ngFor="let tech of selectedProject.technologies" class="tech-tag">{{ tech }}</span>
+                        </div>
+                        <div *ngIf="selectedProject.link" class="project-link">
+                            <a [href]="selectedProject.link" target="_blank">View Project</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-description">
+                        <h3>Description</h3>
+                        <p>{{ selectedProject.description }}</p>
+                    </div>
+                    
+                    <div *ngIf="selectedProject.features && selectedProject.features.length > 0" class="project-features">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li *ngFor="let feature of selectedProject.features">{{ feature }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
