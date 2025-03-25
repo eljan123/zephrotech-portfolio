@@ -2,6 +2,13 @@ import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+interface Certificate {
+  title: string;
+  issuer: string;
+  date: string;
+  image: string;
+}
+
 @Component({
   selector: 'app-about',
   standalone: true,
@@ -10,6 +17,9 @@ import { RouterModule } from '@angular/router';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
+  // Modal properties
+  showModal = false;
+  selectedCertificate: Certificate | null = null;
 
   setupHamburgerMenu(): void {
     const hamburger = document.querySelector('.hamburger') as HTMLElement;
@@ -43,6 +53,57 @@ export class AboutComponent {
     { title: 'Graduation', description: 'Expected graduation from Holy Angel University, 2027.' }
   ]
 
+  certificates: Certificate[] = [
+    {
+      title: 'Responsive Web Design',
+      issuer: 'FreeCodeCamp',
+      date: 'January 18, 2024',
+      image: 'assets/certificates/Responsive-Web-Design.png'
+    },
+    {
+      title: 'Legacy JavaScript Algorithms and Data Structures',
+      issuer: 'FreeCodeCamp',
+      date: 'March 4, 2024',
+      image: 'assets/certificates/Legacy-JavaScript-Algorithms-and-Data-Structure.png'
+    },
+    {
+      title: 'Google Analytics Certification',
+      issuer: 'Google',
+      date: 'March 2, 2025',
+      image: 'assets/certificates/Google-Analytics-Cert.png'
+    },
+    {
+      title: 'Dive Deeper into GA4 Data and Reports',
+      issuer: 'Google',
+      date: 'February 22, 2025',
+      image: 'assets/certificates/GA4_Data-and-reports.png'
+    },
+    {
+      title: 'Use GA4 with other Tools and Data Sources',
+      issuer: 'Google',
+      date: 'March 2, 2025',
+      image: 'assets/certificates/GA4-with-other_Tools-and-Data-Sources.png'
+    },
+    {
+      title: 'Manage GA4 Data and Learn to Read Reports',
+      issuer: 'Google',
+      date: 'March 2, 2024',
+      image: 'assets/certificates/GA4_Data-and-Learn-to-Read-Reports.png'
+    },
+    {
+      title: 'HubSpot SEO II Certified',
+      issuer: 'HubSpot',
+      date: 'February 1, 2025',
+      image: 'assets/certificates/HubSpot-SEO-II.png'
+    },
+    {
+      title: 'CCNAv7: Introduction to Networks',
+      issuer: 'Cisco',
+      date: 'June 23 2024',
+      image: 'assets/certificates/CCNAv7-Introduction-to-Networks.png'
+    }
+  ];
+
   activeIndex = 0;
 
   @HostListener('window:scroll', [])
@@ -61,6 +122,27 @@ export class AboutComponent {
     });
   }
 
+  // Modal methods
+  openCertificateModal(index: number): void {
+    this.selectedCertificate = this.certificates[index];
+    this.showModal = true;
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.selectedCertificate = null;
+    document.body.style.overflow = ''; // Re-enable scrolling
+  }
+
+  // Keyboard event listener for closing modal with Escape key
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (event.key === 'Escape' && this.showModal) {
+      this.closeModal();
+    }
+  }
+
   profile = {
     name: 'Eljan',
     title: 'Student',
@@ -72,6 +154,4 @@ export class AboutComponent {
       "Out of the campus, you'll see me in my house or somewhere in my village playing games, basketball, or trying new things in life"
     ]
   };
-
-
 }

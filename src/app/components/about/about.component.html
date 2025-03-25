@@ -33,6 +33,38 @@
       </div>
     </div>
   </section>
+  
+  <!-- Certificates Section -->
+  <section class="certificates">
+    <h1 class="certificates-title">Certifications</h1>
+    <div class="certificates-grid">
+      <div *ngFor="let cert of certificates; let i = index" class="certificate-item" (click)="openCertificateModal(i)">
+        <div class="certificate-image">
+          <img [src]="cert.image" [alt]="cert.title">
+          <div class="certificate-overlay">
+            <h3>{{ cert.title }}</h3>
+            <p>{{ cert.issuer }}</p>
+            <p class="date">{{ cert.date }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Certificate Modal -->
+  <div class="certificate-modal" *ngIf="showModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close-button" (click)="closeModal()">&times;</span>
+      <h2 *ngIf="selectedCertificate">{{ selectedCertificate.title }}</h2>
+      <div class="modal-image-container" *ngIf="selectedCertificate">
+        <img [src]="selectedCertificate.image" [alt]="selectedCertificate.title">
+      </div>
+      <div class="modal-details" *ngIf="selectedCertificate">
+        <p><strong>Issuer:</strong> {{ selectedCertificate.issuer }}</p>
+        <p><strong>Date:</strong> {{ selectedCertificate.date }}</p>
+      </div>
+    </div>
+  </div>
       
 </body>
 </html>
