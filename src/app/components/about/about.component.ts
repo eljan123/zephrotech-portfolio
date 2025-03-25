@@ -45,12 +45,11 @@ export class AboutComponent {
 
   activeIndex = 0;
 
-    @HostListener('window:scroll', [])
+  @HostListener('window:scroll', [])
   onScroll(): void {
     const scrollPosition = window.scrollY + window.innerHeight;
     const eventElements = document.querySelectorAll('.timeline-event');
-    const line = document.querySelector('.timeline-line') as HTMLElement;
-
+    
     eventElements.forEach((event, index) => {
       const rect = event.getBoundingClientRect();
       const top = rect.top + window.scrollY;
@@ -58,27 +57,9 @@ export class AboutComponent {
       // Check if the event is in view
       if (scrollPosition >= top + rect.height / 2) {
         this.activeIndex = index;
-        // Highlight the line by changing its background color
-        if (line) {
-          line.style.backgroundColor = this.getLineColor(index); // Use a method to define line color
-        }
       }
     });
   }
-
-  // Method to return the line color based on the active index
-  getLineColor(index: number): string {
-    const colorList = [
-      '#007bff', 
-      '#28a745', 
-      '#ffc107', 
-      '#dc3545'  
-    ];
-
-    // Return the appropriate color for the active event, or a default inactive color
-    return colorList[index] || '#ccc';  
-  }
-
 
   profile = {
     name: 'Eljan',
@@ -88,7 +69,7 @@ export class AboutComponent {
       "I'm a student at Holy Angel University, pursuing a Bachelor's degree in Information Technology. ",
     details: [
       "I spend my time gaming, enhancing my coding skills, and learning new technologies. I'm an incoming 4th year student, and I'm looking forward to gain more experience in the field of IT.",
-      "Out of the campus, you’ll see me in my house or somewhere in my village playing games, basketball, or trying new things in life"
+      "Out of the campus, you'll see me in my house or somewhere in my village playing games, basketball, or trying new things in life"
     ]
   };
 

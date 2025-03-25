@@ -9,53 +9,69 @@ $accent-color: rgb(255, 94, 58);
 $dark-blue: rgb(8, 21, 55);
 
 .profile-section {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
   padding: 50px;
   max-width: 1200px;
   margin: 10% auto;
+}
+
+.profile-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  padding: 40px;
+  background-color: rgba(8, 21, 55, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-top: 4px solid $accent-color;
+  transition: transform 0.3s ease;
+  max-width: 900px;
+  margin: 0 auto;
+  
+  &:hover {
+    transform: translateY(-10px);
+  }
 
   /* Image Container */
   .profile-image {
-    flex: 1 1 40%;
+    flex: 0 0 250px;
     max-width: 250px;
 
     img {
       width: 100%;
       height: auto;
-      border-radius: 10px;
+      border-radius: 8px;
       box-shadow: $image-shadow;
+      border: 3px solid rgba(14, 255, 255, 0.5);
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.02);
+      }
     }
   }
 
   /* Content Container */
   .profile-content {
-    flex: 1 1 50%;
-    background-color: $dark-blue;
+    flex: 1;
     padding: $content-padding;
-    border-radius: 8px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.5);
-    border-left: 5px solid $accent-color;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-      transform: translateY(-10px);
-      box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.3), -8px -8px 15px rgba(255, 255, 255, 0.5);
-    }
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-left: 4px solid $accent-color;
 
     h1 {
       font-size: 28px;
       color: #fff;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      font-weight: 600;
     }
 
     p {
       font-size: 16px;
-      color: #fff;
-      margin-bottom: 10px;
+      color: #f0f0f0;
+      margin-bottom: 15px;
+      line-height: 1.6;
 
       &:last-child {
         margin-bottom: 0;
@@ -64,6 +80,7 @@ $dark-blue: rgb(8, 21, 55);
 
     span {
       color: #0ef;
+      font-weight: 700;
     }
   }
 }
@@ -72,211 +89,193 @@ $dark-blue: rgb(8, 21, 55);
 
 @media (max-width: 768px) {
   .profile-section {
-    flex-direction: column; 
-    padding: 30px;
+    padding: 30px 20px;
   }
+  
+  .profile-box {
+    flex-direction: column;
+    padding: 30px 20px;
+    
+    .profile-image {
+      flex: none;
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
 
-  .profile-image {
-    flex: 1 1 80%; 
-    max-width: 90%; 
-    margin-bottom: 20px; 
-  }
+    .profile-content {
+      width: 100%;
+      padding: 15px;
+      
+      h1 {
+        font-size: 24px;
+      }
 
-  .profile-content {
-    flex: 1 1 80%; 
-    padding: 15px; 
-    border-left: none; 
-    margin-top: 20px; 
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.3);
-  }
-
-  h1 {
-    font-size: 24px; 
-  }
-
-  p {
-    font-size: 14px; 
+      p {
+        font-size: 14px;
+      }
+    }
   }
 }
 
 @media (max-width: 480px) {
   .profile-section {
-    padding: 20px; 
+    padding: 20px 15px;
   }
+  
+  .profile-box {
+    padding: 20px 15px;
+    
+    .profile-image {
+      max-width: 180px;
+    }
 
-  .profile-image {
-    flex: 1 1 100%; 
-    max-width: 100%;
-  }
+    .profile-content {
+      padding: 12px;
+      
+      h1 {
+        font-size: 20px;
+      }
 
-  .profile-content {
-    flex: 1 1 100%; 
-    margin-top: 10px;
-  }
-
-  h1 {
-    font-size: 20px; 
-  }
-
-  p {
-    font-size: 12px; 
+      p {
+        font-size: 13px;
+        line-height: 1.5;
+      }
+    }
   }
 }
 
-
 /* ----------------------------------------------------------------------------- */
-/* EDUCATION TIMELINE STYLE ---------------------------------------------------- */
+/* EDUCATION STYLE ---------------------------------------------------- */
 .education {
-  margin-top: 20%;
-  overflow: visible; 
+  margin-top: 10%;
+  padding: 0 50px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .education-title {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   text-align: center;
+  color: $background-color;
 }
 
-$dot-size: 20px;
-$active-color: #007bff;
-$inactive-color: #ccc;
-$line-width: 4px;
-$transition-duration: 0.3s;
-$event-gap: 100px; 
-$event-content-width: 250px; 
-
-.timeline-container {
-  position: relative;
-  margin: 50px auto;
-  width: 80%;
-  max-width: 800px;
-  height: auto; 
-  overflow-y: visible; 
-}
-
-.timeline-line {
-  position: absolute;
-  right: 0; 
-  height: 100%;
-  width: $line-width;
-  background: $inactive-color;
-  transition: background $transition-duration;
-}
-
-.timeline-events {
-  display: flex;
-  flex-direction: column;
-  gap: $event-gap; 
-  padding-left: 20px; 
-  padding-bottom: 20px; 
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
 }
 
 .timeline-event {
-  position: relative;
   display: flex;
-  justify-content: flex-start; 
-  gap: 20px;
-  transition: transform $transition-duration;
-
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  border-top: 4px solid $accent-color;
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
   &.active {
-    .event-dot {
-      background: $active-color;
-    }
-
-    .event-content h3,
-    .event-content p {
-      color: $active-color;
+    border-color: #007bff;
+    
+    .event-content {
+      h3 {
+        color: #007bff;
+      }
     }
   }
-}
-
-.event-dot {
-  position: relative;
-  width: $dot-size;
-  height: $dot-size;
-  background: $inactive-color;
-  border-radius: 50%;
-  transition: background $transition-duration;
 }
 
 .event-content {
-  width: $event-content-width; 
-  padding: 15px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: background-color $transition-duration;
-
+  padding: 25px;
+  flex: 1;
+  
   h3 {
-    margin: 0;
-    font-size: 18px;
-    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+    color: $dark-blue;
+    margin-bottom: 15px;
   }
-
+  
   p {
-    margin: 10px 0 0 0;
-    font-size: 14px;
-    color: #666;
+    font-size: 16px;
+    color: $secondary-color;
+    line-height: 1.6;
   }
 }
 
-/* Mobile View (max-width: 768px) ------------------------------------------------ */
+/* Responsive adjustments for education section */
+@media (max-width: 992px) {
+  .education {
+    padding: 0 30px;
+  }
+  
+  .education-grid {
+    gap: 20px;
+  }
+  
+  .event-content {
+    padding: 20px;
+    
+    h3 {
+      font-size: 18px;
+    }
+    
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
 @media (max-width: 768px) {
-  .timeline-container {
-    width: 90%; 
-    margin: 20px auto;
-    left: 5%; 
+  .education-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
-
-  .timeline-line {
-    right: 50%; 
-    transform: translateX(50%);
-    width: 2px; 
-  }
-
-  .timeline-event {
-    flex-direction: column; 
-    align-items: center;
-    text-align: center;
-
-    .event-dot {
-      margin-bottom: 10px; 
-    }
-
-    .event-content {
-      width: 90%; 
-      padding: 10px; 
-    }
+  
+  .education-title {
+    font-size: 1.75rem;
+    margin-bottom: 30px;
   }
 }
 
-/* Tablet View (max-width: 1024px) --------------------------------------------- */
-@media (max-width: 1024px) {
-  .timeline-container {
-    width: 85%; 
-    left: 7.5%; 
+@media (max-width: 480px) {
+  .education {
+    padding: 0 20px;
   }
-
-  .timeline-line {
-    right: 10%; 
+  
+  .education-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
   }
-
-  .timeline-event {
-    .event-content {
-      width: 75%; 
+  
+  .event-content {
+    padding: 15px;
+    
+    h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      font-size: 13px;
+      line-height: 1.5;
     }
   }
 }
-
 
 /* ----------------------------------------------------------------------------- */
-
-
-
-
-
-
 
 .hamburger {
     display: none; 
