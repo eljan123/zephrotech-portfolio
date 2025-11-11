@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header class="main-header" [class.hidden]="isHeaderHidden" [class.scrolled]="isHeaderScrolled">
+        <a (click)="scrollToTop()" class="logo">ZephroTech</a>
+        <nav class="navbar">
+            <a (click)="scrollToSection('about')">About</a>
+            <a (click)="scrollToSection('skills')">Skills</a>
+            <a (click)="scrollToSection('portfolio')">Portfolio</a>
+            <a (click)="scrollToSection('contact')">Contact</a>
+        </nav>
+    </header>
+    <button *ngIf="showScrollToTop" class="scroll-to-top" [class.show]="showScrollToTop" (click)="scrollToTop()">
+        <i class='bx bx-chevron-up'></i>
+    </button>
+</body>
+</html>
+
+
+<router-outlet />
+<app-about id="about"></app-about>
+<app-skills id="skills"></app-skills>
+<app-portfolio id="portfolio"></app-portfolio>
+<app-contact id="contact"></app-contact>
